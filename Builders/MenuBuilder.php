@@ -2,8 +2,7 @@
 
 namespace Modules\Menu\Builders;
 
-
-use Spatie\Menu\Menu;
+use Spatie\Menu\Laravel\Menu;
 
 /**
  * Class MenuBuilder
@@ -11,28 +10,18 @@ use Spatie\Menu\Menu;
  */
 class MenuBuilder
 {
-    /** @var Menu */
-    private $menu;
-
     /**
-     * MenuBuilder constructor.
+     * @param $name
      */
-    public function __construct()
+    public static function create($name)
     {
-        $this->menu = Menu::macro('main', function () {
-            return Menu::new()
+        Menu::macro($name, function () {
+            return Menu::new()->addClass('list-unstyled components')
                 ->action('HomeController@index', 'Home')
-                ->action('AboutController@index', 'About')
-                ->action('ContactController@index', 'Contact')
+                ->submenu('<a href="#roleSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed">Basic</a>', Menu::new()->setAttribute('id', 'roleSubmenu')->addClass('list-unstyled collapse show')
+                    ->addClass('dropdown-toggle')
+                    ->action('\Modules\Account\Http\Controllers\RolesController@index', 'Roles'))
                 ->setActiveFromRequest();
         });
-    }
-
-    /**
-     * @return Menu
-     */
-    public function getMenu()
-    {
-        return $this->menu;
     }
 }

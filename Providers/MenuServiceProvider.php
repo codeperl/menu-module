@@ -2,6 +2,7 @@
 
 namespace Modules\Menu\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 use Modules\Menu\Builders\MenuBuilder;
@@ -21,12 +22,7 @@ class MenuServiceProvider extends ServiceProvider
         $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
-        $menuBuilder = new MenuBuilder();
-        $mainMenu = $menuBuilder->getMenu();
-
-        View::composer('*', function ($view) {
-            $view->with(compact('mainMenu'));
-        });
+        MenuBuilder::create('main');
     }
 
     /**
