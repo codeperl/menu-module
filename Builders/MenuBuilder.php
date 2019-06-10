@@ -2,7 +2,7 @@
 
 namespace Modules\Menu\Builders;
 
-use Spatie\Menu\Laravel\Menu;
+use Modules\Menu\Extended\VerticalMenu;
 
 /**
  * Class MenuBuilder
@@ -15,12 +15,12 @@ class MenuBuilder
      */
     public static function create($name)
     {
-        Menu::macro($name, function () {
-            return Menu::new()->addClass('list-unstyled components')
+        VerticalMenu::macro($name, function () {
+            return VerticalMenu::new()->addClass('list-unstyled components')
                 ->action('HomeController@index', 'Home')
-                ->submenu('<a href="#roleSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed">Basic</a>', Menu::new()->setAttribute('id', 'roleSubmenu')->addClass('list-unstyled collapse show')
-                    ->addClass('dropdown-toggle')
-                    ->action('\Modules\Account\Http\Controllers\RolesController@index', 'Roles'))
+                ->submenu('<a href="#basicSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed">Basic</a>', VerticalMenu::new()->setAttribute('id', 'basicSubmenu')->addClass('list-unstyled collapse')
+                    ->action('\Modules\Account\Http\Controllers\RolesController@index', 'Roles')
+                    ->action('\Modules\Account\Http\Controllers\PermissionsController@index', 'Permissions'))
                 ->setActiveFromRequest();
         });
     }
