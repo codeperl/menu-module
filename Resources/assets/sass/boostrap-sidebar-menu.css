@@ -7,7 +7,7 @@
 #sidebar a:focus {
     color: #fff;
     text-decoration: none;
-    transition: all 0.3s;
+    /*transition: all 0.3s;*/
 }
 
 #sidebar.navbar {
@@ -134,17 +134,6 @@ a.article,
 a.article:hover {
     background: #6d7fcc !important;
     color: #fff !important;
-}
-
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-
-#content {
-    width: 100%;
-    padding: 20px;
-    min-height: 100vh;
-    transition: all 0.3s;
 }
 
 /* ---------------------------------------------------
