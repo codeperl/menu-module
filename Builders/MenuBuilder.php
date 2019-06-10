@@ -18,9 +18,10 @@ class MenuBuilder
         VerticalMenu::macro($name, function () {
             return VerticalMenu::new()->addClass('list-unstyled components')
                 ->action('HomeController@index', 'Home')
-                ->submenu('<a href="#basicSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed">Basic</a>', VerticalMenu::new()->setAttribute('id', 'basicSubmenu')->addClass('list-unstyled collapse')
+                ->submenu('<a href="#authorizationSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed">Authorization</a>', VerticalMenu::new()->setAttribute('id', 'authorizationSubmenu')->addClass('list-unstyled collapse')
                     ->action('\Modules\Account\Http\Controllers\ResourcesController@index', 'Resources')
                     ->action('\Modules\Account\Http\Controllers\PermissionsController@index', 'Permissions')
+                    ->action('\Modules\Account\Http\Controllers\AssignResourcesToPermissionsController@index', 'Assign resource to permission')
                     ->action('\Modules\Account\Http\Controllers\RolesController@index', 'Roles')
                     ->action('\Modules\Account\Http\Controllers\AssignRolesToUsersController@index', 'Assign role to user')
                     ->action('\Modules\Account\Http\Controllers\AssignPermissionsToUsersController@index', 'Assign permission to user')
